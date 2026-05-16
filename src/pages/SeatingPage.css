@@ -1,0 +1,57 @@
+.seating-hero {
+  padding-top: clamp(7rem, 12vw, 11rem);
+  padding-bottom: clamp(4rem, 7vw, 7rem);
+  background-color: var(--bg-secondary);
+  border-bottom: 1px solid var(--border);
+}
+
+.seating-hero__back {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-sans);
+  font-size: var(--text-label);
+  font-weight: 300;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  margin-bottom: 2.8rem;
+  transition: color 0.3s, gap 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.seating-hero__back:hover {
+  color: var(--text-primary);
+  gap: 0.8rem;
+}
+
+.seating-hero__eyebrow {
+  margin-bottom: 1.4rem;
+}
+
+.seating-hero__title {
+  font-family: var(--font-serif);
+  font-size: var(--text-display);
+  font-weight: 400;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+  max-width: 700px;
+  margin-bottom: 2.2rem;
+  font-feature-settings: 'kern' 1, 'liga' 1, 'dlig' 1;
+}
+
+.seating-hero__title em {
+  font-style: italic;
+  color: var(--accent);
+  font-weight: 400;
+}
+
+.seating-hero__desc {
+  font-family: var(--font-sans);
+  font-size: var(--text-small);
+  font-weight: 300;
+  color: var(--text-secondary);
+  line-height: 1.9;
+  max-width: 540px;
+  letter-spacing: 0.01em;
+}

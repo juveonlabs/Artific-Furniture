@@ -1,0 +1,94 @@
+/* ── Ethos Strip ─────────────────────────────────────────── */
+.ethos {
+  padding: clamp(6rem, 10vw, 11rem) 0;
+  background-color: #18170E;
+  border-top: 1px solid rgba(247, 245, 240, 0.06);
+  overflow: hidden;
+  position: relative;
+}
+
+.ethos__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+  position: relative;
+  z-index: 1;
+}
+
+/* ── Pillar ──────────────────────────────────────────────── */
+.ethos__pillar {
+  padding: 0 clamp(2rem, 4vw, 4.5rem);
+  position: relative;
+}
+
+.ethos__pillar + .ethos__pillar::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: rgba(247, 245, 240, 0.08);
+}
+
+.ethos__pillar:first-child { padding-left: 0; }
+.ethos__pillar:last-child  { padding-right: 0; }
+
+/* ── Ghost number ────────────────────────────────────────── */
+.ethos__num {
+  display: block;
+  font-family: var(--font-serif);
+  font-size: clamp(4.5rem, 9vw, 8rem);
+  font-weight: 400;
+  font-style: italic;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  color: rgba(247, 245, 240, 0.06);
+  margin-bottom: 1.8rem;
+  font-feature-settings: 'kern' 1;
+  user-select: none;
+}
+
+/* ── Title ───────────────────────────────────────────────── */
+.ethos__title {
+  font-family: var(--font-serif);
+  font-size: clamp(1.6rem, 2.4vw, 2.2rem);
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  line-height: 1.1;
+  color: rgba(247, 245, 240, 0.9);
+  margin-bottom: 1.6rem;
+  font-feature-settings: 'kern' 1, 'liga' 1;
+}
+
+/* ── Body ────────────────────────────────────────────────── */
+.ethos__body {
+  font-family: var(--font-sans);
+  font-size: var(--text-small);
+  font-weight: 300;
+  color: rgba(247, 245, 240, 0.42);
+  line-height: 1.95;
+  letter-spacing: 0.01em;
+}
+
+/* ── Responsive ──────────────────────────────────────────── */
+@media (max-width: 900px) {
+  .ethos__grid {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .ethos__pillar {
+    padding: 3rem 0;
+    border-bottom: 1px solid rgba(247, 245, 240, 0.08);
+  }
+
+  .ethos__pillar:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  .ethos__pillar + .ethos__pillar::before { display: none; }
+  .ethos__pillar:first-child { padding-left: 0; padding-top: 0; }
+  .ethos__pillar:last-child  { padding-right: 0; }
+}

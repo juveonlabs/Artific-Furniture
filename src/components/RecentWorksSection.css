@@ -1,0 +1,88 @@
+/* ── Recent Works (matches About page projects UI) ───────── */
+.recent-works {
+  padding: clamp(6rem, 10vw, 11rem) 0;
+  background-color: var(--bg-primary);
+  border-top: 1px solid var(--border);
+}
+
+.recent-works__title {
+  font-family: var(--font-serif);
+  font-size: var(--text-heading);
+  font-weight: 400;
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+  margin: 1.2rem 0 clamp(3rem, 5vw, 5rem);
+  font-feature-settings: 'kern' 1, 'liga' 1;
+}
+
+.recent-works__title em {
+  font-style: italic;
+  color: var(--accent);
+}
+
+.recent-works__list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0;
+}
+
+.recent-works__item {
+  display: flex;
+  align-items: baseline;
+  gap: 1.8rem;
+  padding: 1.6rem 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.recent-works__item:nth-child(odd) {
+  padding-right: 4rem;
+  border-right: 1px solid var(--border);
+}
+
+.recent-works__item:nth-child(even) {
+  padding-left: 4rem;
+}
+
+.recent-works__item:nth-last-child(-n+2) {
+  border-bottom: none;
+}
+
+.recent-works__item-num {
+  font-family: var(--font-sans);
+  font-size: 0.6rem;
+  font-weight: 300;
+  letter-spacing: 0.14em;
+  color: var(--accent);
+  flex-shrink: 0;
+}
+
+.recent-works__item-name {
+  font-family: var(--font-serif);
+  font-size: 1.2rem;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  color: var(--text-primary);
+  line-height: 1.3;
+  font-feature-settings: 'kern' 1;
+}
+
+/* ── Responsive ──────────────────────────────────────────── */
+@media (max-width: 640px) {
+  .recent-works__list {
+    grid-template-columns: 1fr;
+  }
+
+  .recent-works__item:nth-child(odd) {
+    padding-right: 0;
+    border-right: none;
+  }
+
+  .recent-works__item:nth-child(even) {
+    padding-left: 0;
+  }
+
+  .recent-works__item:last-child {
+    border-bottom: none;
+  }
+}

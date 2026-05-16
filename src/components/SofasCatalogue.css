@@ -1,0 +1,204 @@
+/* ── Sofas Catalogue Section ─────────────────────────────── */
+.sofas {
+  padding: var(--section-v) 0;
+  background-color: var(--bg-primary);
+  border-top: 1px solid var(--border);
+}
+
+/* ── Header ──────────────────────────────────────────────── */
+.sofas__header {
+  margin-bottom: clamp(4rem, 7vw, 6.5rem);
+}
+
+.sofas__header-body {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(3rem, 6vw, 7rem);
+  align-items: end;
+  margin-top: 0;
+}
+
+.sofas__title {
+  font-family: var(--font-serif);
+  font-size: var(--text-heading);
+  font-weight: 400;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+  margin-top: 1.2rem;
+  font-feature-settings: 'kern' 1, 'liga' 1, 'dlig' 1;
+}
+
+.sofas__title em {
+  font-style: italic;
+  color: var(--accent);
+  font-weight: 400;
+}
+
+.sofas__desc {
+  font-family: var(--font-sans);
+  font-size: var(--text-small);
+  font-weight: 300;
+  color: var(--text-secondary);
+  line-height: 1.95;
+  letter-spacing: 0.01em;
+  max-width: 420px;
+  align-self: end;
+  padding-bottom: 0.4rem;
+}
+
+/* ── Grid wrapper ────────────────────────────────────────── */
+.sofas__grid-wrap {
+  padding: 0 var(--container-pad);
+}
+
+/* ── Grid ────────────────────────────────────────────────── */
+.sofas__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  grid-auto-flow: dense;
+}
+
+/* ── Card ────────────────────────────────────────────────── */
+.sofa-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  transition: transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.sofa-card--wide { grid-column: span 2; }
+
+.sofa-card:hover { transform: translateY(-6px); }
+
+/* ── Media ───────────────────────────────────────────────── */
+.sofa-card__media {
+  position: relative;
+  overflow: hidden;
+  border-radius: 14px;
+  background-color: var(--bg-card);
+  aspect-ratio: 5 / 4;
+  box-shadow: 0 4px 24px rgba(24, 23, 14, 0.07);
+  transition: box-shadow 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.sofa-card--wide .sofa-card__media { aspect-ratio: 16 / 9; }
+
+.sofa-card:hover .sofa-card__media {
+  box-shadow: 0 20px 56px rgba(24, 23, 14, 0.14);
+}
+
+.sofa-card__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+  display: block;
+}
+
+.sofa-card:hover .sofa-card__img { transform: scale(1.05); }
+
+/* ── Card info ───────────────────────────────────────────── */
+.sofa-card__info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.4rem 0.2rem 0;
+  border-top: 1px solid var(--border);
+  margin-top: 1.1rem;
+}
+
+.sofa-card__details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.28rem;
+  min-width: 0;
+}
+
+.sofa-card__material {
+  font-family: var(--font-serif);
+  font-size: 1.15rem;
+  font-weight: 400;
+  color: var(--text-primary);
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+  font-feature-settings: 'kern' 1;
+}
+
+.sofa-card__type {
+  font-family: var(--font-sans);
+  font-size: 0.62rem;
+  font-weight: 300;
+  color: var(--text-muted);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+/* ── Luxury enquire — minimal text link ─────────────────── */
+.sofa-card__enquire {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: none;
+  border: none;
+  padding: 0;
+  font-family: var(--font-sans);
+  font-size: 0.62rem;
+  font-weight: 400;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  cursor: pointer;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: color 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              gap   0.45s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.sofa-card__enquire svg { opacity: 0.45; transition: opacity 0.35s; }
+
+.sofa-card__enquire:hover { color: var(--accent); gap: 0.8rem; }
+.sofa-card__enquire:hover svg { opacity: 1; }
+
+/* ── Footer row ──────────────────────────────────────────── */
+.sofas__footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 2rem;
+  margin-top: clamp(3.5rem, 6vw, 5.5rem);
+  padding-top: 2.5rem;
+  border-top: 1px solid var(--border);
+}
+
+.sofas__footer-note {
+  font-family: var(--font-sans);
+  font-size: var(--text-label);
+  font-weight: 300;
+  color: var(--text-muted);
+  letter-spacing: 0.03em;
+  line-height: 1.75;
+  max-width: 400px;
+}
+
+/* ── Responsive ──────────────────────────────────────────── */
+@media (max-width: 1024px) {
+  .sofas__header-body { grid-template-columns: 1fr; gap: 2rem; }
+  .sofas__desc        { max-width: 100%; }
+}
+
+@media (max-width: 768px) {
+  .sofas__grid { grid-template-columns: repeat(2, 1fr); gap: 1.2rem; }
+  .sofa-card--wide .sofa-card__media { aspect-ratio: 4/3; }
+}
+
+@media (max-width: 540px) {
+  .sofas__grid { grid-template-columns: 1fr; gap: 1.5rem; }
+  .sofa-card--wide { grid-column: span 1; }
+  .sofa-card--wide .sofa-card__media { aspect-ratio: 5/4; }
+  .sofas__footer { flex-direction: column; align-items: flex-start; }
+}
