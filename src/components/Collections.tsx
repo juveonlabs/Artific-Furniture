@@ -139,13 +139,19 @@ function categoryFromParam(param: string | null): Category {
 }
 
 export default function Collections({ hideHeader = false }: Props) {
-  const [searchParams] = useSearchParams();
-  const [active, setActive] = useState<Category>(() => categoryFromParam(searchParams.get('category')));
+  const [searchParams, setSearchParams] = useSearchParams();
+  const active = categoryFromParam(searchParams.get('category'));
   const { open } = useEnquire();
 
-  useEffect(() => {
-    setActive(categoryFromParam(searchParams.get('category')));
-  }, [searchParams]);
+  const handleCategoryChange = (cat: Category) => {
+    const params = new URLSearchParams(searchParams);
+    if (cat === 'All') {
+      params.delete('category');
+    } else {
+      params.set('category', cat);
+    }
+    setSearchParams(params);
+  };
 
   const filtered = active === 'All' ? products : products.filter(p => p.category === active);
 
@@ -176,7 +182,7 @@ export default function Collections({ hideHeader = false }: Props) {
               <button
                 key={cat}
                 className={`collections__filter${active === cat ? ' collections__filter--active' : ''}`}
-                onClick={() => setActive(cat)}
+                onClick={() => handleCategoryChange(cat)}
               >
                 {cat}
                 <span className="collections__filter-count">{COUNTS[cat]}</span>
