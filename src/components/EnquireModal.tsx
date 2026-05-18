@@ -2,6 +2,7 @@ import { useEffect, useRef, useState, type FormEvent } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, ArrowRight } from 'lucide-react';
 import { useEnquire } from '../context/EnquireContext';
+import { CONFIG } from '../config';
 import './EnquireModal.css';
 
 const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1];
@@ -59,26 +60,27 @@ export default function EnquireModal() {
     setLoading(true);
 
     try {
-      const response = await fetch("https://formsubmit.co/ajax/Artificfurniture2023@gmail.com", {
+      const response = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
         headers: { 
           'Content-Type': 'application/json',
           'Accept': 'application/json'
         },
         body: JSON.stringify({
-          _subject: `Artific Product Enquiry: ${productName}`,
+          access_key: CONFIG.WEB3FORMS_ACCESS_KEY,
+          subject: `Artific Product Enquiry: ${productName}`,
           "Product Name": productName,
-          Name: fields.name,
-          Email: fields.email,
-          Phone: fields.phone || 'Not provided',
-          Message: fields.message
+          name: fields.name,
+          email: fields.email,
+          phone: fields.phone || 'Not provided',
+          message: fields.message
         })
       });
       const data = await response.json();
-      if (data.success === "true") {
+      if (data.success) {
         setSent(true);
       } else {
-        setError('Failed to send enquiry. Please try again.');
+        setError(data.message || 'Failed to send enquiry. Please try again.');
       }
     } catch (err) {
       setError('An error occurred. Please try again.');

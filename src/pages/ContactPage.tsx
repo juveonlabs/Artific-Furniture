@@ -3,6 +3,7 @@ import { motion, useInView } from 'framer-motion';
 import { useState, type FormEvent } from 'react';
 import { ArrowRight, MapPin, Mail, Phone } from 'lucide-react';
 import Footer from '../components/Footer';
+import { CONFIG } from '../config';
 import './ContactPage.css';
 
 const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1];
@@ -48,25 +49,26 @@ export default function ContactPage() {
     setLoading(true);
 
     try {
-      const response = await fetch("https://formsubmit.co/ajax/Artificfurniture2023@gmail.com", {
+      const response = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
         headers: { 
           'Content-Type': 'application/json',
           'Accept': 'application/json'
         },
         body: JSON.stringify({
-          _subject: `New Artific Contact: ${fields.subject || 'Inquiry'}`,
-          Name: fields.name,
-          Email: fields.email,
-          Subject: fields.subject || 'Inquiry',
-          Message: fields.message
+          access_key: CONFIG.WEB3FORMS_ACCESS_KEY,
+          subject: `New Artific Contact: ${fields.subject || 'Inquiry'}`,
+          name: fields.name,
+          email: fields.email,
+          user_subject: fields.subject || 'Inquiry',
+          message: fields.message
         })
       });
       const data = await response.json();
-      if (data.success === "true") {
+      if (data.success) {
         setSent(true);
       } else {
-        setError('Failed to send message. Please try again.');
+        setError(data.message || 'Failed to send message. Please try again.');
       }
     } catch (err) {
       setError('An error occurred. Please try again.');
