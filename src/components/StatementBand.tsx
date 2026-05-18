@@ -52,16 +52,16 @@ export default function StatementBand() {
               viewport={{ once: true, margin: '-60px' }}
               transition={{ duration: 0.85, delay: 0.08 * i, ease: EASE }}
             >
-              <Link to="/collections" className="col-card__media">
+              <Link to={`/collections?category=${col.name}`} className="col-card__media">
                 <img src={col.image} alt={col.name} className="col-card__img" loading="lazy" />
                 <div className="col-card__overlay" />
               </Link>
               <div className="col-card__body">
                 <div>
                   <span className="col-card__sub">{col.sub}</span>
-                  <Link to="/collections"><h3 className="col-card__name">{col.name}</h3></Link>
+                  <Link to={`/collections?category=${col.name}`}><h3 className="col-card__name">{col.name}</h3></Link>
                 </div>
-                <Link to="/collections" className="col-card__arrow">
+                <Link to={`/collections?category=${col.name}`} className="col-card__arrow">
                   <ArrowRight size={17} strokeWidth={1.2} />
                 </Link>
               </div>
