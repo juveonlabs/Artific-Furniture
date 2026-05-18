@@ -35,10 +35,44 @@ export default function ContactPage() {
 
   const [sent, setSent] = useState(false);
   const [fields, setFields] = useState({ name: '', email: '', subject: '', message: '' });
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
 
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    setSent(true);
+    if (!fields.name || !fields.email || !fields.message) {
+      setError('Please fill in all required fields.');
+      return;
+    }
+    setError('');
+    setLoading(true);
+
+    try {
+      const response = await fetch("https://formsubmit.co/ajax/Artificfurniture2023@gmail.com", {
+        method: "POST",
+        headers: { 
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          _subject: `New Artific Contact: ${fields.subject || 'Inquiry'}`,
+          Name: fields.name,
+          Email: fields.email,
+          Subject: fields.subject || 'Inquiry',
+          Message: fields.message
+        })
+      });
+      const data = await response.json();
+      if (data.success === "true") {
+        setSent(true);
+      } else {
+        setError('Failed to send message. Please try again.');
+      }
+    } catch (err) {
+      setError('An error occurred. Please try again.');
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -199,11 +233,18 @@ export default function ContactPage() {
                   </div>
 
                   <div className="contact-page-form__footer">
-                    <p className="contact-page-form__note">
-                      We respect your privacy and never share your information.
-                    </p>
-                    <button type="submit" className="btn-primary contact-page-form__submit">
-                      Send Message <ArrowRight size={15} strokeWidth={1.5} />
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '0.4rem' }}>
+                      <p className="contact-page-form__note">
+                        We respect your privacy and never share your information.
+                      </p>
+                      {error && (
+                        <p style={{ color: '#e05d5d', fontSize: '0.75rem', fontFamily: 'var(--font-sans)', fontWeight: 300, letterSpacing: '0.04em' }}>
+                          {error}
+                        </p>
+                      )}
+                    </div>
+                    <button type="submit" className="btn-primary contact-page-form__submit" disabled={loading}>
+                      {loading ? 'Sending...' : 'Send Message'} <ArrowRight size={15} strokeWidth={1.5} />
                     </button>
                   </div>
                 </form>

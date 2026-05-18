@@ -22,12 +22,15 @@ export default function EnquireModal() {
   const { isOpen, close, productName } = useEnquire();
   const [sent, setSent] = useState(false);
   const [fields, setFields] = useState({ name: '', email: '', phone: '', message: '' });
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
   const firstInputRef = useRef<HTMLInputElement>(null);
 
   /* Reset form when modal opens */
   useEffect(() => {
     if (isOpen) {
       setSent(false);
+      setError('');
       setFields({ name: '', email: '', phone: '', message: '' });
       setTimeout(() => firstInputRef.current?.focus(), 350);
     }
@@ -46,9 +49,42 @@ export default function EnquireModal() {
     return () => window.removeEventListener('keydown', onKey);
   }, [close]);
 
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    setSent(true);
+    if (!fields.name || !fields.email || !fields.message) {
+      setError('Please fill in all required fields.');
+      return;
+    }
+    setError('');
+    setLoading(true);
+
+    try {
+      const response = await fetch("https://formsubmit.co/ajax/Artificfurniture2023@gmail.com", {
+        method: "POST",
+        headers: { 
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          _subject: `Artific Product Enquiry: ${productName}`,
+          "Product Name": productName,
+          Name: fields.name,
+          Email: fields.email,
+          Phone: fields.phone || 'Not provided',
+          Message: fields.message
+        })
+      });
+      const data = await response.json();
+      if (data.success === "true") {
+        setSent(true);
+      } else {
+        setError('Failed to send enquiry. Please try again.');
+      }
+    } catch (err) {
+      setError('An error occurred. Please try again.');
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -164,9 +200,16 @@ export default function EnquireModal() {
                 </div>
 
                 <div className="eq-form__foot">
-                  <p className="eq-note">We respond to every enquiry within one business day.</p>
-                  <button type="submit" className="btn-primary eq-submit">
-                    Send Enquiry <ArrowRight size={15} strokeWidth={1.5} />
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '0.4rem', width: '100%' }}>
+                    <p className="eq-note">We respond to every enquiry within one business day.</p>
+                    {error && (
+                      <p style={{ color: '#e05d5d', fontSize: '0.75rem', fontFamily: 'var(--font-sans)', fontWeight: 300, letterSpacing: '0.04em' }}>
+                        {error}
+                      </p>
+                    )}
+                  </div>
+                  <button type="submit" className="btn-primary eq-submit" disabled={loading}>
+                    {loading ? 'Sending...' : 'Send Enquiry'} <ArrowRight size={15} strokeWidth={1.5} />
                   </button>
                 </div>
               </form>
