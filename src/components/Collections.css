@@ -29,7 +29,7 @@
 /* ── Sticky filter bar ───────────────────────────────────── */
 .collections__filter-bar {
   position: sticky;
-  top: 64px;
+  top: 52px;
   z-index: 20;
   background-color: var(--bg-primary);
   display: flex;
