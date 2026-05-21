@@ -58,6 +58,8 @@ export default function ContactPage() {
         body: JSON.stringify({
           access_key: CONFIG.WEB3FORMS_ACCESS_KEY,
           subject: `New Artific Contact: ${fields.subject || 'Inquiry'}`,
+          from_name: "Artific Website Form",
+          replyto: fields.email,
           name: fields.name,
           email: fields.email,
           user_subject: fields.subject || 'Inquiry',

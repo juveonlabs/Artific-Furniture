@@ -69,6 +69,8 @@ export default function EnquireModal() {
         body: JSON.stringify({
           access_key: CONFIG.WEB3FORMS_ACCESS_KEY,
           subject: `Artific Product Enquiry: ${productName}`,
+          from_name: "Artific Product Enquiry",
+          replyto: fields.email,
           "Product Name": productName,
           name: fields.name,
           email: fields.email,
