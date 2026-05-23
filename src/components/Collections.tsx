@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import {} from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useEnquire } from '../context/EnquireContext';
