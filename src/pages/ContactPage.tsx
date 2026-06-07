@@ -1,7 +1,7 @@
 import { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { useState, type FormEvent } from 'react';
-import { ArrowRight, MapPin, Mail, Phone } from 'lucide-react';
+import { ArrowRight, MapPin, Mail } from 'lucide-react';
 import Footer from '../components/Footer';
 import { CONFIG } from '../config';
 import './ContactPage.css';
@@ -17,11 +17,6 @@ const details = [
       'Metilli, Gachibowli — 24,000 sq.ft',
       'Artific Extension, Toli Chowki — Opening Soon',
     ],
-  },
-  {
-    Icon: Phone,
-    label: 'Phone',
-    lines: ['+91 99595 02020', '+91 63016 15247', '+91 99893 56785'],
   },
   {
     Icon: Mail,
