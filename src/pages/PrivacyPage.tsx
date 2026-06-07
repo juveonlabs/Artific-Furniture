@@ -65,7 +65,7 @@ export default function PrivacyPage() {
           title: 'Your rights',
           paragraphs: [
             'Depending on applicable law, you may have the right to access, correct, or delete your personal information, restrict or object to certain processing, and request a copy of data we hold about you.',
-            'To exercise these rights, contact us at Artificfurniture2023@gmail.com or call +91 99595 02020. We will respond within a reasonable timeframe.',
+            'To exercise these rights, contact us at Artificfurniture2023@gmail.com. We will respond within a reasonable timeframe.',
           ],
         },
         {

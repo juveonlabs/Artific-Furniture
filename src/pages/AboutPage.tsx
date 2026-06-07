@@ -300,12 +300,6 @@ export default function AboutPage() {
             </h2>
           </FadeIn>
           <div className="about-contact__details">
-            <FadeIn className="about-contact__item" delay={0.1}>
-              <span className="about-contact__label">Phone</span>
-              <span className="about-contact__value">+91 99595 02020</span>
-              <span className="about-contact__value">+91 63016 15247</span>
-              <span className="about-contact__value">+91 99893 56785</span>
-            </FadeIn>
             <FadeIn className="about-contact__item" delay={0.18}>
               <span className="about-contact__label">Email</span>
               <span className="about-contact__value">Artificfurniture2023@gmail.com</span>

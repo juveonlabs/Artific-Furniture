@@ -70,7 +70,7 @@ export default function TermsPage() {
           title: 'Governing law',
           paragraphs: [
             'These terms are governed by the laws of India. Any disputes shall be subject to the exclusive jurisdiction of the courts in Hyderabad, Telangana.',
-            'For questions regarding these Terms of Service, contact Artific Furniture at Artificfurniture2023@gmail.com or +91 99595 02020.',
+            'For questions regarding these Terms of Service, contact Artific Furniture at Artificfurniture2023@gmail.com.',
           ],
         },
       ]}
